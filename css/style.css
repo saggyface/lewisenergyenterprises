@@ -33,8 +33,15 @@
     .py-6 { padding-top: 45px; padding-bottom: 45px; }
 }
 
-/* Prevent any residual layout from creating horizontal scroll on mobile */
-html, body {
+/* Prevent any residual layout from creating horizontal scroll on mobile.
+   Use clip on html (more aggressive than hidden — clips at border box,
+   no scroll container created) and hidden on body as fallback for older
+   browsers that don't support clip. */
+html {
+    overflow-x: clip;
+}
+
+body {
     overflow-x: hidden;
 }
 
@@ -192,12 +199,82 @@ html, body {
     }
 }
 
+/* =============================================
+   Navbar — rebuilt for consistent responsive
+   behavior at every width
+   ============================================= */
+
+/* Force flex layout: logo left, toggler right, top-aligned so a
+   wrapping two-line logo never pushes the hamburger down */
+.navbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-start !important;
+    flex-wrap: nowrap !important;
+}
+
+/* ---- Brand / logo ---- */
+.navbar-brand {
+    flex-shrink: 1;
+    min-width: 0;
+    text-decoration: none !important;
+    border: none !important;
+    padding: 0;
+}
+
+.navbar-brand h1 {
+    font-size: clamp(1.1rem, 5vw, 2.5rem);
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove double-line / underline artifact on the brand text at every state */
+.navbar-brand:hover,
+.navbar-brand:focus,
+.navbar-brand:active {
+    text-decoration: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.navbar-brand:hover h1,
+.navbar-brand:focus h1 {
+    text-decoration: none !important;
+    border: none !important;
+}
+
+/* ---- Hamburger toggler ---- fixed size, no border, identical at every width */
+.navbar-toggler {
+    width: 44px;
+    height: 44px;
+    padding: 0.5rem;
+    border: none !important;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+    background-color: transparent;
+    transition: none;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:hover {
+    box-shadow: none !important;
+    outline: none !important;
+    border: none !important;
+    background-color: transparent;
+}
+
+/* ---- Nav links ---- */
 .navbar-dark .navbar-nav .nav-link {
     position: relative;
     padding: 35px 15px;
     font-size: 18px;
     text-transform: uppercase;
     color: var(--light);
+    white-space: nowrap;
     outline: none;
     transition: .5s;
 }
@@ -207,29 +284,47 @@ html, body {
     color: var(--primary);
 }
 
-@media (max-width: 991.98px) {
-    .navbar-dark .navbar-nav .nav-link  {
-        margin-left: 0;
-        padding: 10px 0;
+/* ---- Apply Now CTA button ---- never wrap */
+.apply-btn {
+    white-space: nowrap !important;
+    min-width: max-content;
+}
+
+/* =============================================
+   Breakpoint: 768px–991px  (tablet / landscape phone)
+   Nav links are inline. Reduce spacing so they fit.
+   ============================================= */
+@media (max-width: 991.98px) and (min-width: 768px) {
+    .navbar-dark .navbar-nav .nav-link {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+
+    .navbar-dark .navbar-nav .nav-link.apply-btn {
+        padding: 8px 16px;
+        margin-left: 8px;
+        font-size: 12px;
+    }
+
+    /* The outer px-5 is too generous at this width; shrink gutters */
+    .navbar.px-5 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
     }
 }
 
-/* The brand logo uses Bootstrap's display-4 size, which is fixed at ~3.5rem
-   (56px) and does not shrink on its own. On narrow phones that pushes
-   the whole page wider than the viewport, causing horizontal scrolling
-   and a cut-off logo. Scale it fluidly instead so it always fit. */
-.navbar-brand h1,
-.footer h2.display-4 {
-    font-size: clamp(1.1rem, 5vw, 2.5rem);
-    white-space: nowrap;
-}
-
-/* On very narrow phones the nowrap brand text can still exceed the viewport
-   width. Allow it to wrap naturally below 400px. */
-@media (max-width: 400px) {
-    .navbar-brand h1 {
+/* =============================================
+   Breakpoint: below 768px  (mobile — collapsed nav)
+   ============================================= */
+@media (max-width: 767.98px) {
+    .navbar-dark .navbar-nav .nav-link {
+        margin-left: 0;
+        padding: 10px 0;
         white-space: normal;
-        word-break: break-word;
+    }
+
+    .navbar-nav {
+        padding-bottom: 10px;
     }
 }
 
@@ -527,6 +622,12 @@ html, body {
     .contact-form {
         margin-left: -90px;
     }
+}
+
+/* Footer brand — fluid size to match navbar brand */
+.footer h2.display-4 {
+    font-size: clamp(1.1rem, 5vw, 2.5rem);
+    white-space: nowrap;
 }
 
 @media (min-width: 992px) {
