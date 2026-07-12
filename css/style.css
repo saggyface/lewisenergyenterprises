@@ -352,6 +352,18 @@ body {
     letter-spacing: 0.02em;
 }
 
+/* Hero CTA button — 30% more transparent than default btn-primary */
+.hero-content .btn-primary {
+    background-color: rgba(13, 110, 253, 0.7);
+    border-color: rgba(13, 110, 253, 0.7);
+}
+
+.hero-content .btn-primary:hover,
+.hero-content .btn-primary:focus {
+    background-color: rgba(13, 110, 253, 0.85);
+    border-color: rgba(13, 110, 253, 0.85);
+}
+
 /* Hero: tablets and large phones */
 @media (max-width: 1024px) {
     .hero-section {
