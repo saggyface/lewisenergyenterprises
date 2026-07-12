@@ -303,29 +303,60 @@ html, body {
     }
 }
 
+/* Tablets / landscape phones — shift crop down so the solar panels
+   and family are visible rather than mostly sky */
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 65vh;
+        min-height: 70vh;
+    }
+
+    .hero-bg img {
+        object-position: center 60%;
     }
 
     .hero-content {
-        padding: 1.5rem;
-        margin: 1rem;
-    }
-}
-
-/* Hero: small phones */
-@media (max-width: 480px) {
-    .hero-section {
-        min-height: 60vh;
-    }
-
-    .hero-headline {
-        font-size: clamp(1.4rem, 7vw, 1.8rem);
+        padding: 1.25rem 1rem;
+        margin: 0.75rem;
     }
 
     .hero-sub {
         font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Portrait phones — tighter crop, smaller type, reduced padding so the
+   overlay box doesn't swallow the entire hero image */
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: 65vh;
+    }
+
+    .hero-bg img {
+        object-position: center 65%;
+    }
+
+    .hero-headline {
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero-sub {
+        font-size: 0.82rem;
+        line-height: 1.35;
+        margin-bottom: 0.75rem;
+    }
+
+    .hero-trust-text {
+        margin-top: 0.5rem;
+        font-size: 0.82rem;
+    }
+
+    .hero-content {
+        padding: 1rem 0.85rem;
+        margin: 0.5rem;
+        border-radius: 8px;
     }
 
     .hero-content .btn {
