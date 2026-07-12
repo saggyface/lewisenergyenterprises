@@ -200,74 +200,10 @@ body {
 }
 
 /* =============================================
-   Navbar — rebuilt for consistent responsive
-   behavior at every width
+   Navbar — original layout + mobile compact
    ============================================= */
 
-/* Force flex layout: logo left, toggler right, top-aligned so a
-   wrapping two-line logo never pushes the hamburger down */
-.navbar {
-    display: flex !important;
-    justify-content: space-between !important;
-    align-items: flex-start !important;
-    flex-wrap: nowrap !important;
-}
-
-/* ---- Brand / logo ---- */
-.navbar-brand {
-    flex-shrink: 1;
-    min-width: 0;
-    text-decoration: none !important;
-    border: none !important;
-    padding: 0;
-}
-
-.navbar-brand h1 {
-    font-size: clamp(1.1rem, 5vw, 2.5rem);
-    text-decoration: none !important;
-    border: none !important;
-    box-shadow: none !important;
-}
-
-/* Remove double-line / underline artifact on the brand text at every state */
-.navbar-brand:hover,
-.navbar-brand:focus,
-.navbar-brand:active {
-    text-decoration: none !important;
-    border: none !important;
-    box-shadow: none !important;
-    outline: none !important;
-}
-
-.navbar-brand:hover h1,
-.navbar-brand:focus h1 {
-    text-decoration: none !important;
-    border: none !important;
-}
-
-/* ---- Hamburger toggler ---- fixed size, no border, identical at every width */
-.navbar-toggler {
-    width: 44px;
-    height: 44px;
-    padding: 0.5rem;
-    border: none !important;
-    border-radius: 0.25rem;
-    flex-shrink: 0;
-    margin-top: 0.25rem;
-    background-color: transparent;
-    transition: none;
-}
-
-.navbar-toggler:focus,
-.navbar-toggler:active,
-.navbar-toggler:hover {
-    box-shadow: none !important;
-    outline: none !important;
-    border: none !important;
-    background-color: transparent;
-}
-
-/* ---- Nav links ---- */
+/* Nav links — desktop */
 .navbar-dark .navbar-nav .nav-link {
     position: relative;
     padding: 35px 15px;
@@ -284,47 +220,72 @@ body {
     color: var(--primary);
 }
 
-/* ---- Apply Now CTA button ---- never wrap */
-.apply-btn {
-    white-space: nowrap !important;
-    min-width: max-content;
-}
-
-/* =============================================
-   Breakpoint: 768px–991px  (tablet / landscape phone)
-   Nav links are inline. Reduce spacing so they fit.
-   ============================================= */
-@media (max-width: 991.98px) and (min-width: 768px) {
-    .navbar-dark .navbar-nav .nav-link {
-        padding: 12px 8px;
-        font-size: 13px;
-    }
-
-    .navbar-dark .navbar-nav .nav-link.apply-btn {
-        padding: 8px 16px;
-        margin-left: 8px;
-        font-size: 12px;
-    }
-
-    /* The outer px-5 is too generous at this width; shrink gutters */
-    .navbar.px-5 {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-}
-
-/* =============================================
-   Breakpoint: below 768px  (mobile — collapsed nav)
-   ============================================= */
-@media (max-width: 767.98px) {
+/* Collapsed nav links — below lg breakpoint */
+@media (max-width: 991.98px) {
     .navbar-dark .navbar-nav .nav-link {
         margin-left: 0;
         padding: 10px 0;
-        white-space: normal;
+    }
+}
+
+/* Brand / logo — fluid sizing so it never forces overflow */
+.navbar-brand h1,
+.footer h2.display-4 {
+    font-size: clamp(1.1rem, 5vw, 2.5rem);
+    white-space: nowrap;
+    text-decoration: none;
+    border: none;
+}
+
+/* =============================================
+   Mobile compact header (below 480px)
+   ============================================= */
+
+/* Reduce header vertical padding so it takes less screen real estate */
+@media (max-width: 479.98px) {
+    .navbar.py-3 {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+    }
+}
+
+/* Shrink logo icon + text so it crowds the hamburger less */
+@media (max-width: 479.98px) {
+    .navbar-brand {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
     }
 
-    .navbar-nav {
-        padding-bottom: 10px;
+    .navbar-brand h1 {
+        font-size: clamp(0.9rem, 4.5vw, 1.2rem);
+    }
+
+    .navbar-brand i {
+        font-size: 0.9em;
+    }
+}
+
+/* Shrink the hamburger to match the more compact header */
+@media (max-width: 479.98px) {
+    .navbar-toggler {
+        padding: 0.3rem 0.55rem;
+        font-size: 1rem;
+    }
+
+    .navbar-toggler-icon {
+        width: 1.2em;
+        height: 1.2em;
+    }
+}
+
+/* Ensure a small gap between logo and hamburger so they don't collide.
+   Bootstrap's navbar already has auto margins, but at very narrow widths
+   the brand can grow wide enough to touch the toggler. Adding a small
+   min-gap on the brand's right side prevents overlap. */
+@media (max-width: 479.98px) {
+    .navbar-brand {
+        margin-right: 0.5rem !important;
     }
 }
 
