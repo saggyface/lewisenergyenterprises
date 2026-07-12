@@ -1,0 +1,610 @@
+/********** Template CSS **********/
+:root {
+    --primary: #FD5D14;
+    --secondary: #FDBE33;
+    --light: #F4F6F8;
+    --dark: #040F28;
+}
+
+.pt-6 {
+    padding-top: 90px;
+}
+
+.pb-6 {
+    padding-bottom: 90px;
+}
+
+.py-6 {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+/* Scale section spacing down on smaller screens so content doesn't
+   feel over-padded and pages aren't needlessly long on mobile */
+@media (max-width: 991.98px) {
+    .pt-6 { padding-top: 60px; }
+    .pb-6 { padding-bottom: 60px; }
+    .py-6 { padding-top: 60px; padding-bottom: 60px; }
+}
+
+@media (max-width: 575.98px) {
+    .pt-6 { padding-top: 45px; }
+    .pb-6 { padding-bottom: 45px; }
+    .py-6 { padding-top: 45px; padding-bottom: 45px; }
+}
+
+/* Prevent any residual layout from creating horizontal scroll on mobile */
+html, body {
+    overflow-x: hidden;
+}
+
+/* container-fluid px-5 (3rem/48px each side) is far too much padding on
+   phones/tablets, it eats a huge chunk of the available width */
+@media (max-width: 991.98px) {
+    .px-5 {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .px-5 {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+}
+
+/* Feature checklist ($0 Down callout section)
+   Icon + text used to be inline in a <p> (icon relying on vertical-align
+   from the text baseline). Different browsers/devices calculate an icon
+   font's baseline differently — Samsung Internet and Android Chrome in
+   particular render Font Awesome's glyphs a few pixels off from the
+   surrounding bold text, which is why the checkmarks looked unaligned on
+   Samsung phones even though it looked fine on desktop/iOS.
+   Using flexbox instead removes the dependency on font baseline
+   metrics entirely, so the icon lines up with the text the same way on
+   every browser and every screen size. */
+.check-list {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+.check-item i {
+    flex: 0 0 auto;
+    line-height: 1.4;
+    position: relative;
+    top: 0.05em;
+}
+
+.check-item span {
+    flex: 1 1 auto;
+}
+
+@media (max-width: 575.98px) {
+    .check-item {
+        font-size: 1rem;
+        gap: 0.6rem;
+        margin-bottom: 0.85rem;
+    }
+}
+
+.btn {
+    position: relative;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: .5s;
+}
+
+.btn::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 5px;
+    bottom: -1px;
+    left: 50%;
+    background: var(--primary);
+    transition: .5s;
+}
+
+.btn.btn-primary::after {
+    background: var(--dark);
+}
+
+.btn:hover::after,
+.btn.active::after {
+    width: 50%;
+    left: 25%;
+}
+
+.btn-primary {
+    color: #FFFFFF;
+}
+
+.btn-square {
+    width: 36px;
+    height: 36px;
+}
+
+.btn-sm-square {
+    width: 28px;
+    height: 28px;
+}
+
+.btn-lg-square {
+    width: 46px;
+    height: 46px;
+}
+
+.btn-square,
+.btn-sm-square,
+.btn-lg-square {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+}
+
+.back-to-top {
+    position: fixed;
+    display: none;
+    left: 50%;
+    bottom: 0;
+    margin-left: -22px;
+    border-radius: 0;
+    z-index: 99;
+}
+
+.bg-dark-radial {
+    background-image: -webkit-repeating-radial-gradient(center center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 100%);
+    background-image: -moz-repeating-radial-gradient(center center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 100%);
+    background-image: -ms-repeating-radial-gradient(center center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 100%);
+    background-image: -o-repeating-radial-gradient(center center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 100%);
+    background-image: repeating-radial-gradient(center center, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 100%);
+    background-size: 3px 3px;
+}
+
+.bg-light-radial {
+    background-image: -webkit-repeating-radial-gradient(center center, rgba(256, 256, 256, 0.2), rgba(256, 256, 256, 0.2) 1px, transparent 1px, transparent 100%);
+    background-image: -moz-repeating-radial-gradient(center center, rgba(256, 256, 256, 0.2), rgba(256, 256, 256, 0.2) 1px, transparent 1px, transparent 100%);
+    background-image: -ms-repeating-radial-gradient(center center, rgba(256, 256, 256, 0.2), rgba(256, 256, 256, 0.2) 1px, transparent 1px, transparent 100%);
+    background-image: -o-repeating-radial-gradient(center center, rgba(256, 256, 256, 0.2), rgba(256, 256, 256, 0.2) 1px, transparent 1px, transparent 100%);
+    background-image: repeating-radial-gradient(center center, rgba(256, 256, 256, 0.2), rgba(256, 256, 256, 0.2) 1px, transparent 1px, transparent 100%);
+    background-size: 3px 3px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    position: relative;
+    padding: 35px 15px;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: var(--light);
+    outline: none;
+    transition: .5s;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+    .navbar-dark .navbar-nav .nav-link  {
+        margin-left: 0;
+        padding: 10px 0;
+    }
+}
+
+/* The brand logo uses Bootstrap's display-4 size, which is fixed at ~3.5rem
+   (56px) and does not shrink on its own. On narrow phones that pushes
+   the whole page wider than the viewport, causing horizontal scrolling
+   and a cut-off logo. Scale it fluidly instead so it always fits. */
+.navbar-brand h1,
+.footer h2.display-4 {
+    font-size: clamp(1.1rem, 5vw, 2.5rem);
+    white-space: nowrap;
+}
+
+/* =============================================
+   Hero Section (replaces old carousel)
+   ============================================= */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.hero-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    max-width: 900px;
+    margin: clamp(1rem, 3vw, 2rem);
+    background: rgba(4, 15, 40, 0.8);
+    border-radius: 12px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.hero-headline {
+    font-size: clamp(1.75rem, 5vw, 3.25rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 0.75rem;
+    line-height: 1.15;
+}
+
+.hero-sub {
+    font-size: clamp(0.95rem, 2.5vw, 1.3rem);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 1.5rem;
+}
+
+.hero-trust-text {
+    margin-top: 1rem;
+    margin-bottom: 0;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+/* Hero: tablets and large phones */
+@media (max-width: 1024px) {
+    .hero-section {
+        min-height: 75vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 65vh;
+    }
+
+    .hero-content {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+}
+
+/* Hero: small phones */
+@media (max-width: 480px) {
+    .hero-section {
+        min-height: 60vh;
+    }
+
+    .hero-headline {
+        font-size: clamp(1.4rem, 7vw, 1.8rem);
+    }
+
+    .hero-sub {
+        font-size: 0.9rem;
+    }
+
+    .hero-content .btn {
+        min-height: 48px;
+        font-size: 1rem;
+    }
+}
+
+/* =============================================
+   Trust Badge
+   ============================================= */
+.trust-badge {
+    display: inline-flex;
+    align-items: center;
+    background: var(--dark);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+}
+
+.trust-badge i {
+    color: var(--primary);
+    font-size: 1.25rem;
+}
+
+/* Apply section trust line */
+.apply-trust-line {
+    display: inline-flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: clamp(0.95rem, 2vw, 1.05rem);
+    color: var(--dark);
+}
+
+.apply-trust-line i {
+    font-size: 1.1rem;
+}
+
+/* =============================================
+   Page Header (preserved from template)
+   ============================================= */
+.page-header {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(rgba(4, 15, 40, .7), rgba(4, 15, 40, .7)), url(../img/carousel-1.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+/*** Service ***/
+.service-item {
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+}
+
+/* Ensure service images are responsive */
+.service-item .img-fluid {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.service-icon {
+    position: relative;
+    margin: -50px 0 25px 0;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    background: #FFFFFF;
+    border-radius: 100px;
+    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    transition: .5s;
+}
+
+.service-item:hover .service-icon {
+    color: #FFFFFF;
+    background: var(--primary);
+}
+
+/* Mobile: scale service icon smaller so it doesn't dominate the card */
+@media (max-width: 575.98px) {
+    .service-icon {
+        width: 75px;
+        height: 75px;
+        margin: -38px 0 18px 0;
+    }
+
+    .service-icon i {
+        font-size: 2x;
+    }
+}
+
+.portfolio-item {
+    margin-bottom: 60px;
+}
+
+.portfolio-title {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 120px;
+    padding: 0 30px;
+    right: 30px;
+    left: 30px;
+    bottom: -60px;
+    background: #FFFFFF;
+    z-index: 3;
+}
+
+.portfolio-btn {
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    left: 50%;
+    margin-top: -60px;
+    margin-left: -60px;
+    font-size: 120px;
+    line-height: 0;
+    transition: .1s;
+    transition-delay: .3s;
+    z-index: 2;
+    opacity: 0;
+}
+
+.portfolio-item:hover .portfolio-btn {
+    opacity: 1;
+}
+
+.portfolio-box::before,
+.portfolio-box::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 100%;
+    top: 0;
+    transition: .5s;
+    z-index: 1;
+    background: rgba(4, 15, 40, .7);
+}
+
+.portfolio-box::before {
+    left: 0;
+}
+
+.portfolio-box::after {
+    right: 0;
+}
+
+.portfolio-item:hover .portfolio-box::before {
+    left: 0;
+    width: 50%;
+}
+
+.portfolio-item:hover .portfolio-box::after {
+    right: 0;
+    width: 50%;
+}
+
+@media (min-width: 992px) {
+    .testimonial,
+    .contact-form {
+        margin-left: -90px;
+    }
+}
+
+@media (min-width: 992px) {
+    .footer::after {
+        position: absolute;
+        content: "";
+        width: 1px;
+        height: 100%;
+        top: 0;
+        left: 50%;
+        background: var(--primary)
+    }
+}
+
+.footer-shape::before {
+    position: absolute;
+    content: "";
+    width: 80px;
+    height: 100%;
+    top: 0;
+    left: -40px;
+    background: var(--primary);
+    transform: skew(40deg);
+}
+
+
+/* =============================================
+   FORM RESPONSIVENESS
+   ============================================= */
+
+/* Prevent iOS zoom on focus: inputs must be >= 16px */
+@media (max-width: 575.98px) {
+    #leadForm select,
+    #leadForm input[type="text"],
+    #leadForm input[type="tel"],
+    #leadForm input[type="email"] {
+        font-size: 16px;
+    }
+
+    /* Stack radio buttons vertically on small screens for easier tapping */
+    #leadForm .form-check-inline {
+        display: block;
+        margin-bottom: 0.35rem;
+    }
+
+    #leadForm .form-check-inline .form-check-input {
+        margin-left: 0;
+        margin-right: 0.5rem;
+    }
+}
+
+/* Make select / input tap targets minimum 48px tall */
+@media (max-width: 768px) {
+    #leadForm select,
+    #leadForm input[type="text"],
+    #leadForm input[type="tel"],
+    #leadForm input[type="email"] {
+        min-height: 48px;
+    }
+}
+
+
+/* =============================================
+   SERVICE CARDS — MOBILE GRID
+   ============================================= */
+
+/* Ensure the 3-col grid collapses cleanly */
+@media (max-width: 767.98px) {
+    .row.g-4 > [class*="col-md-6"] {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+/* Two columns on tablets */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .row.g-4 > [class*="col-lg-4"] {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
+
+
+/* =============================================
+   ABOUT SECTION — MOBILE TWEAKS
+   ============================================= */
+
+@media (max-width: 575.98px) {
+    /* The $0 circle callout — shrink it a bit on phones */
+    #about .rounded-circle {
+        width: 120px !important;
+        height: 120px !important;
+    }
+
+    #about .rounded-circle .display-3 {
+        font-size: 2rem;
+    }
+
+    #about .rounded-circle .small {
+        font-size: 0.65rem;
+    }
+}
+
+
+/* =============================================
+   GENERAL MOBILE TWEAKS
+   ============================================= */
+
+/* Ensure all headings use fluid sizing so they don't overflow on narrow screens */
+.display-5 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.display-3 {
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+/* Minimum tap target for all CTA buttons */
+.btn-primary,
+.btn-primary.py-3 {
+    min-height: 48px;
+    min-width: 48px;
+}
+
+/* Reduce heading weight slightly on mobile so it doesn't feel heavy on small screens */
+@media (max-width: 575.98px) {
+    .display-5 {
+        font-weight: 600;
+    }
+}
