@@ -491,13 +491,32 @@ body {
 /*** Service ***/
 .service-item {
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 /* Ensure service images are responsive */
 .service-item .img-fluid {
     width: 100%;
-    height: auto;
+    height: 200px;
     object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Fixed min-heights on title and description for consistent alignment
+   across all 6 cards regardless of text length */
+.service-item h3 {
+    min-height: 3.5rem;
+}
+
+.service-item p {
+    min-height: 5.5rem;
+}
+
+/* Text area fills remaining space after image */
+.service-item .position-relative {
+    flex-grow: 1;
 }
 
 .service-icon {
@@ -520,8 +539,12 @@ body {
     background: var(--primary);
 }
 
-/* Mobile: scale service icon smaller so it doesn't dominate the card */
+/* Mobile: scale service icon and image smaller so they don't dominate the card */
 @media (max-width: 575.98px) {
+    .service-item .img-fluid {
+        height: 160px;
+    }
+
     .service-icon {
         width: 75px;
         height: 75px;
