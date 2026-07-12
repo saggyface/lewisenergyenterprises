@@ -496,11 +496,12 @@ body {
     height: 100%;
 }
 
-/* Ensure service images are responsive */
+/* Ensure service images are responsive — fixed 6:5 aspect ratio */
 .service-item .img-fluid {
     width: 100%;
-    height: 200px;
+    aspect-ratio: 6 / 5;
     object-fit: cover;
+    object-position: center;
     flex-shrink: 0;
 }
 
@@ -539,12 +540,8 @@ body {
     background: var(--primary);
 }
 
-/* Mobile: scale service icon and image smaller so they don't dominate the card */
+/* Mobile: scale service icon smaller so it doesn't dominate the card */
 @media (max-width: 575.98px) {
-    .service-item .img-fluid {
-        height: 160px;
-    }
-
     .service-icon {
         width: 75px;
         height: 75px;
